@@ -13,4 +13,3 @@ public class quit : MonoBehaviour
         Application.Quit();
     }
 }
-
