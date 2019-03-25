@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PhysicsObject : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class PhysicsObject : MonoBehaviour
 
 	protected const float minMoveDistance = 0.001f;
 	protected const float shellRadius = 0.01f;
+
+	public UnityEvent OnLandEvent;
+
+	[System.Serializable]
+	public class BoolEvent : UnityEvent<bool> { }
 
 	void OnEnable()
 	{
@@ -105,5 +111,6 @@ public class PhysicsObject : MonoBehaviour
 
 		rb2d.position = rb2d.position + move.normalized * distance;
 	}
+
 
 }
