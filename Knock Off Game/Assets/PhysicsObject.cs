@@ -111,6 +111,13 @@ public class PhysicsObject : MonoBehaviour
 
 		rb2d.position = rb2d.position + move.normalized * distance;
 	}
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("coin"))
+        {
+            Destroy(collision.gameObject);
+        }
+        ScoreScript.scoreValue += 1;
+    }
 
 }

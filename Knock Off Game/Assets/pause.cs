@@ -37,6 +37,8 @@ public class pause : MonoBehaviour {
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+        //adding line to reset score counter
+        ScoreScript.scoreValue = 0;
     }
     public void Quitgame()
     {
