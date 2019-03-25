@@ -44,6 +44,7 @@ public class characterMovement : PhysicsObject
 		*/
 
 		targetVelocity = move * maxSpeed;
+     
 	}
 
 	public void OnLanding ()
