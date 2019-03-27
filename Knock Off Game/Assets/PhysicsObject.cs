@@ -110,7 +110,22 @@ public class PhysicsObject : MonoBehaviour
 		}
 
 		rb2d.position = rb2d.position + move.normalized * distance;
-	}
-
+        if (rb2d.position.y < -6f)
+        {
+            FindObjectOfType<GameManage>().EndGame();
+        }
+        if (rb2d.position.x > 232.37)
+        {
+            FindObjectOfType<GameManage>().EndGame();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("coin"))
+        {
+            Destroy(collision.gameObject);
+        }
+        ScoreScript.scoreValue += 1;
+    }
 
 }
