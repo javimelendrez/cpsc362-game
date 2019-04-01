@@ -113,6 +113,7 @@ public class PhysicsObject : MonoBehaviour
         if (rb2d.position.y < -6f)
         {
             FindObjectOfType<GameManage>().EndGame();
+
         }
         if (rb2d.position.x > 232.37)
         {
@@ -123,6 +124,7 @@ public class PhysicsObject : MonoBehaviour
     {
         if(collision.CompareTag("coin"))
         {
+            SoundManager.PlaySound("coin sound");
             Destroy(collision.gameObject);
         }
         ScoreScript.scoreValue += 1;
