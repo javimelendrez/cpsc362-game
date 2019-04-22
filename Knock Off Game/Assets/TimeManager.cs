@@ -21,6 +21,8 @@ public class TimeManager : MonoBehaviour
         if (startingTime <= 0)
         {
             ScoreScript.scoreValue = 0;
+            SoundManager.StopMusic();
+            SoundManager.PlaySound("game over sound");
             FindObjectOfType<GameManage>().EndGame();
         }
     }

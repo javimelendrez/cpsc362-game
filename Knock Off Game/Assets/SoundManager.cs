@@ -36,4 +36,12 @@ public class SoundManager : MonoBehaviour
 
         }
     }
+    public static void StopMusic()
+    {
+        audioSrc.Stop();
+    }
+    public static void playMusic()
+    {
+        audioSrc.Play();
+    }
 }
