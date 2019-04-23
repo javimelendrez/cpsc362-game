@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    bool gameHasEnded = false;
-    public void EndGame()
+    public static GameManager instance = null;
+
+    public int score; //The overall score during the game
+
+    private void Awake()
     {
-        if (gameHasEnded == false)
+        if (instance == null)   //Assigns instance for the first time
         {
-            gameHasEnded = true;
-            Invoke("Restart", 2f);
-            Restart();
+            instance = this;
         }
-    }
-    void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        else if (instance != this)  //Destroys if GameManager is a duplicate
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);  //Allows the GameManager to persist between scenes
     }
 }
