@@ -23,6 +23,7 @@ public class PhysicsObject : MonoBehaviour
 	protected const float shellRadius = 0.01f;
 
 	public UnityEvent OnLandEvent;
+	
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
@@ -126,6 +127,19 @@ public class PhysicsObject : MonoBehaviour
             Destroy(collision.gameObject);
         }
         ScoreScript.scoreValue += 1;
+
+		if(collision.CompareTag("Spike_Up") || collision.CompareTag("Spike_Left&down"))
+		{
+			//Enter the death here
+			FindObjectOfType<GameManage>().EndGame();
+		}
+		else if(collision.CompareTag("Mac_512"))
+		{
+			//Enter the death here
+			FindObjectOfType<GameManage>().EndGame();
+		}
     }
+
+
 
 }

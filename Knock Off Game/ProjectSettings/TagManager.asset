@@ -6,6 +6,9 @@ TagManager:
   tags:
   - GamePoints
   - coin
+  - Spike_Up
+  - Spike_Left&down
+  - Mac_512
   layers:
   - Default
   - TransparentFX
