@@ -121,7 +121,7 @@ public class PhysicsObject : MonoBehaviour
         if (rb2d.position.x > 232.37)
         {
 
-            FindObjectOfType<GameManage>().EndGame();
+            FindObjectOfType<GameManage>().CompleteLevel();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
