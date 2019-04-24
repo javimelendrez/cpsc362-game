@@ -24,6 +24,13 @@ public class GameManage : MonoBehaviour
      */
     public static bool GameIsOver = false;
     public GameObject gameOverMenuUI;
+    public float restartDelay = 1f;
+    public GameObject completLevelUI;
+
+    public void CompleteLevel()
+    {
+        completLevelUI.SetActive(true);
+    }
     // Update is called once per frame
     void Update()
     {
