@@ -120,6 +120,8 @@ public class PhysicsObject : MonoBehaviour
         }
         if (rb2d.position.x > 232.37)
         {
+           // SoundManager.StopMusic();
+            SoundManager.PlaySound("level complete");
             FindObjectOfType<GameManage>().CompleteLevel();
         }
     }
