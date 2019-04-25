@@ -131,8 +131,14 @@ public class PhysicsObject : MonoBehaviour
         {
             SoundManager.PlaySound("coin sound");
             Destroy(collision.gameObject);
+            ScoreScript.scoreValue += 1;
         }
-        ScoreScript.scoreValue += 1;
+        if(collision.CompareTag("bad guy"))
+        {
+            SoundManager.StopMusic();
+            SoundManager.PlaySound("game over sound");
+            FindObjectOfType<GameManage>().EndGame();
+        }
     }
 
 }
