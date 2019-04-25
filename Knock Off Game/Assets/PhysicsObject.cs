@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,6 +23,7 @@ public class PhysicsObject : MonoBehaviour
 	protected const float shellRadius = 0.01f;
 
 	public UnityEvent OnLandEvent;
+	
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
@@ -112,27 +113,33 @@ public class PhysicsObject : MonoBehaviour
 		rb2d.position = rb2d.position + move.normalized * distance;
         if (rb2d.position.y < -6f)
         {
-            SoundManager.StopMusic();
-            SoundManager.PlaySound("game over sound");
-
             FindObjectOfType<GameManage>().EndGame();
-
         }
         if (rb2d.position.x > 232.37)
         {
-           // SoundManager.StopMusic();
-            SoundManager.PlaySound("level complete");
-            FindObjectOfType<GameManage>().CompleteLevel();
+            FindObjectOfType<GameManage>().EndGame();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("coin"))
         {
-            SoundManager.PlaySound("coin sound");
             Destroy(collision.gameObject);
         }
         ScoreScript.scoreValue += 1;
+
+		if(collision.CompareTag("Spike_Up") || collision.CompareTag("Spike_Left&down"))
+		{
+			//Enter the death here
+			FindObjectOfType<GameManage>().EndGame();
+		}
+		else if(collision.CompareTag("Mac_512"))
+		{
+			//Enter the death here
+			FindObjectOfType<GameManage>().EndGame();
+		}
     }
+
+
 
 }
