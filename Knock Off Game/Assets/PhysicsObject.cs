@@ -24,6 +24,8 @@ public class PhysicsObject : MonoBehaviour
 
 	public UnityEvent OnLandEvent;
 
+    private bool isInvulnerable = false;
+
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
@@ -133,12 +135,35 @@ public class PhysicsObject : MonoBehaviour
             Destroy(collision.gameObject);
             ScoreScript.scoreValue += 1;
         }
-        if(collision.CompareTag("bad guy"))
+        if(collision.CompareTag("bad guy") && !isInvulnerable)
         {
             SoundManager.StopMusic();
             SoundManager.PlaySound("game over sound");
             FindObjectOfType<GameManage>().EndGame();
         }
+        if(collision.CompareTag("Star") && !isInvulnerable)
+        {
+            SoundManager.PlaySound("menu music");
+            Destroy(collision.gameObject);
+            StartCoroutine(InvulnerabilityFlash());
+        }
     }
 
+    //Makes the player invulnerable and flashing, and ends it after a time
+    IEnumerator InvulnerabilityFlash()
+    {
+        isInvulnerable = true;
+        for (int i = 0; i < 25; i++)
+        {
+            //Debug.Log("flashing...");
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
+            yield return new WaitForSeconds(0.2F);
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return new WaitForSeconds(0.2F);
+        }
+        //SoundManager.PlaySound("level 1 music");
+        SoundManager.StopMusic(); //May need the level music in the Sound Manager
+        isInvulnerable = false;
+    }
 }
+
