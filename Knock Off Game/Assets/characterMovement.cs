@@ -5,51 +5,68 @@ using UnityEngine.Events;
 
 public class characterMovement : PhysicsObject
 {
-	public float maxSpeed = 15;
-	public float jump = 15;
-	public Animator animator;
-	
+    public float maxSpeed = 15;
+    public float jump = 15;
+    public Animator animator;
+    public bool facingRight;
 
 
-	void start()
-	{
-		animator.SetBool("IsBlinking", true);
-	}
+    void start()
+    {
+        facingRight = true;
+        animator.SetBool("IsBlinking", true);
+    }
 
-	protected override void ComputeVelocity()
-	{
-		
-		Vector2 move = Vector2.zero;
+    protected override void ComputeVelocity()
+    {
 
-		move.x = Input.GetAxis("Horizontal");
-		animator.SetFloat("Speed", Mathf.Abs(move.x));
+        Vector2 move = Vector2.zero;
 
-		if(Input.GetButtonDown("Jump") && grounded)
-		{
-			velocity.y = jump;
-			animator.SetBool("IsJumping", true);
-		}
-		else if(Input.GetButtonUp("Jump"))
-		{
-			while(velocity.y > 0)
-			{
-				velocity.y = velocity.y * .5f;
-			}
-			animator.SetBool("IsJumping", false);
-		}
-		/*else
+        move.x = Input.GetAxis("Horizontal");
+        animator.SetFloat("Speed", Mathf.Abs(move.x));
+        Flip(move.x);
+
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            velocity.y = jump;
+            animator.SetBool("IsJumping", true);
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            while (velocity.y > 0)
+            {
+                velocity.y = velocity.y * .5f;
+            }
+            animator.SetBool("IsJumping", false);
+        }
+        /*else
 		{
 			animator.SetBool("IsJumping", false);
 		}
 		*/
 
-		targetVelocity = move * maxSpeed;
-     
-	}
+        targetVelocity = move * maxSpeed;
 
-	public void OnLanding ()
-	{
-		animator.SetBool("IsJumping", false);
-	}
+    }
+
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+    }
+
+    public void Flip(float move)
+    {
+        if (move > 0 && !facingRight || move < 0 && facingRight)
+        {
+            facingRight = !facingRight;
+
+            Vector2 scale = transform.localScale;
+            scale.x *= -1;
+
+            transform.localScale = scale;
+
+        }
+    }
 }
+
 
