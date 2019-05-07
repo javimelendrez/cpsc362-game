@@ -161,8 +161,9 @@ public class PhysicsObject : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             yield return new WaitForSeconds(0.2F);
         }
-        //SoundManager.PlaySound("level 1 music");
-        SoundManager.StopMusic(); //May need the level music in the Sound Manager
+        SoundManager.StopMusic();
+        SoundManager.PlaySound("level 1 music");
+         //May need the level music in the Sound Manager
         isInvulnerable = false;
     }
 }
