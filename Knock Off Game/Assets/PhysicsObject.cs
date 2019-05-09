@@ -28,7 +28,8 @@ public class PhysicsObject : MonoBehaviour
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
-
+   // public Weapon ww;
+    public GameObject gg;
     void OnEnable()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -147,6 +148,14 @@ public class PhysicsObject : MonoBehaviour
             SoundManager.PlaySound("star music");
             Destroy(collision.gameObject);
             StartCoroutine(InvulnerabilityFlash());
+      
+        }
+        if (collision.CompareTag("fire")){
+            //(gg.GetComponent("Weapon") as MonoBehaviour).enabled = true;
+            Destroy(collision.gameObject);
+            // (gg.GetComponent("Weapon") as MonoBehaviour).enabled = true;
+            gg.GetComponent<Weapon>().enabled = true;
+
         }
     }
 

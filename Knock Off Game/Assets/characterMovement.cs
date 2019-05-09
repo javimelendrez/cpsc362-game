@@ -59,11 +59,7 @@ public class characterMovement : PhysicsObject
         if (move > 0 && !facingRight || move < 0 && facingRight)
         {
             facingRight = !facingRight;
-
-            Vector2 scale = transform.localScale;
-            scale.x *= -1;
-
-            transform.localScale = scale;
+            transform.Rotate(0f, 180f, 0f); //new way to rotate
 
         }
     }

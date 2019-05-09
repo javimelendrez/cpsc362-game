@@ -18,6 +18,10 @@ public class enemyVertical : MonoBehaviour
 
 		transform.position = new Vector3(transform.position.x, tempPos.y + Mathf.Sin(Time.fixedTime * Mathf.PI * freq) * amp, transform.position.z);
 	}
+    public void die()
+    {
+        Destroy(gameObject);
+    }
 }
 
 

@@ -9,6 +9,8 @@ TagManager:
   - boxes
   - bad guy
   - Star
+  - fire
+  - bad guy2
   layers:
   - Default
   - TransparentFX
