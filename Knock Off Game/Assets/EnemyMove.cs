@@ -21,6 +21,10 @@ public class EnemyMove : MonoBehaviour
 
         }
     }
- }
+    public void die()
+    {
+        Destroy(gameObject);
+    }
+}
 
 
