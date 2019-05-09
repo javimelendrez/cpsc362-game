@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip gameOverSound, collectCoinSound, menuMusicSound, levelCompleteSound;
+    public static AudioClip gameOverSound, collectCoinSound, menuMusicSound, levelCompleteSound, levelMusicSound, starMusicSound;
     static AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
@@ -13,13 +13,15 @@ public class SoundManager : MonoBehaviour
         collectCoinSound = Resources.Load<AudioClip>("coin sound");
         menuMusicSound = Resources.Load<AudioClip>("menu music");
         levelCompleteSound = Resources.Load<AudioClip>("level complete");
+        levelMusicSound = Resources.Load<AudioClip>("next level");
+        starMusicSound = Resources.Load<AudioClip>("star music");
         audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public static void PlaySound(string clip)
     {
@@ -37,7 +39,12 @@ public class SoundManager : MonoBehaviour
             case "level complete":
                 audioSrc.PlayOneShot(levelCompleteSound);
                 break;
-
+            case "next level":
+                audioSrc.PlayOneShot(levelMusicSound);
+                break;
+            case "star music":
+                audioSrc.PlayOneShot(starMusicSound);
+                break;
         }
     }
     public static void StopMusic()
